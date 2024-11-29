@@ -3,11 +3,11 @@ import path from "path";
 
 const app = express();
 
-app.get("/", (req, res) => {
-    console.log(path.resolve());
+// setting up view engine
+app.set("view engine", "ejs");
 
-    const pathlocation = path.resolve();
-    res.sendFile(path.join(pathlocation, "index.html"));
+app.get("/", (req, res) => {
+    res.render("./index", { name: "Aman Kumar" });
 });
 
 app.listen(5000, () => {
