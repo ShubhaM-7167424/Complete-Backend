@@ -1,22 +1,15 @@
-import http from "http";
-import { generateLovePercent } from "./features.js";
+import express from "express";
 import path from "path";
 
-console.log(path.normalize("/home/random/dirC/app.html"));
+const app = express();
 
+app.get("/", (req, res) => {
+    console.log(path.resolve());
 
-const server = http.createServer((req, res) => {
-    if (req.url === "/") {
-        res.end("Home Page");
-    } else if (req.url === "/product") {
-        res.end(`<h1>Love is ${generateLovePercent()}</h1>`);
-    } else if (req.url === "/contact") {
-        res.end("<h1>Contact Page</h1>");
-    } else {
-        res.end("<h1>Page Not Found</h1>");
-    }
+    const pathlocation = path.resolve();
+    res.sendFile(path.join(pathlocation, "index.html"));
 });
 
-server.listen(5000, () => {
+app.listen(5000, () => {
     console.log("server is working");
 });
