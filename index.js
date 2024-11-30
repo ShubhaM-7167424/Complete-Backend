@@ -30,13 +30,17 @@ app.use(cookieParser());
 // setting up view engine
 app.set("view engine", "ejs");
 
-app.get("/", (req, res) => {
+const isAuthenticated = (req, res, next) => {
     const { token } = req.cookies;
     if (token) {
-        res.render("logout");
+        next();
     } else {
         res.render("login");
     }
+};
+
+app.get("/", isAuthenticated, (req, res) => {
+    res.render("logout");
 });
 
 app.post("/login", (req, res) => {
