@@ -42,3 +42,8 @@ button{
       border: rgb(17, 156, 231);
       color: white;
 }
+.error{
+      color: red;
+      font-size: 0.7rem;
+      text-align: right;
+}
